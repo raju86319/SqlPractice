@@ -153,3 +153,5 @@ select T.PersonName as Person ,case when T.ManagerId is null then 'no Manager' e
   use Practice
 
   select distinct GenderId,age,city from tblCricketers
+
+
