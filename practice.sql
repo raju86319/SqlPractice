@@ -104,7 +104,7 @@ select IDENT_CURRENT('Identity_example1')
  
  update tblPerson set Email='hardik_allRounder@india.com' where PersonName='Hardik pandya'  
 
---renaming to tblPerson to tblCricketers
+--renaming table name  'tblPerson' to 'tblCricketers'
 sp_rename 'tblPerson','tblCricketers'
 
 select *from tblCricketers
@@ -120,4 +120,36 @@ update tblCricketers set city ='Nianatal' where PersonName='Manish Pandey'
 
 select * from tblCricketers where age in(36,28)
 select * from tblCricketers where age between 28 and 36
-select *from tblCricketers where PersonName LIKE 'k%i'
+select *from tblCricketers where PersonName LIKE '_o%i'
+
+select *from tblCricketers  
+
+use Practice
+alter table tblCricketers add ManagerId int
+
+update  tblCricketers set ManagerId=1 where Id =5 
+update  tblCricketers set ManagerId=2 where Id =4 
+update  tblCricketers set ManagerId=3 where Id =3 
+update  tblCricketers set ManagerId=4 where Id =2 
+update  tblCricketers set ManagerId=5 where Id =1 
+
+--replacing null values
+--using is null
+SELECT *from tblCricketers
+select T.PersonName as Person ,isnull(M.PersonName,'No manager') as manager from tblCricketers T
+ Left join tblCricketers M
+ on
+  T.ManagerId = M.Id
+
+ --using case 
+SELECT *from tblCricketers
+select T.PersonName as Person ,case when T.ManagerId is null then 'no Manager' else M.PersonName end as manager from tblCricketers T
+ Left join tblCricketers M
+ on
+  T.ManagerId = M.Id
+
+
+  update tblCricketers set ManagerId =null where ManagerId=5
+  use Practice
+
+  select distinct GenderId,age,city from tblCricketers
