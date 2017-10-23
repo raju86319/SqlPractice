@@ -195,3 +195,4 @@ EXEC spGetEmployeeCount 'male',@EmployeeCount out
 print @EmployeeCount
 
 sp_help spGetEmployeeCount
+sp_depends spGetEmployeeCount
