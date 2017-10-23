@@ -155,3 +155,23 @@ select T.PersonName as Person ,case when T.ManagerId is null then 'no Manager' e
   select distinct GenderId,age,city from tblCricketers
 
 
+  --About COALESCE 
+
+--It returns the first non NULL value 
+use EmployeedB
+select *from Employees
+insert into Employees (FirstName,Gender,Salary) values('Manikanta','male',6)
+insert into Employees (LastName,Gender,Salary) values('jami','male',6)
+select *from Employees
+select COALESCE(FirstName,LastName) as name,Gender,Salary from Employees
+
+--About Union and Union all
+
+-- diffrences between union and union all 
+-- Union removes dulpicate rows where as union all does not 
+--Union has to perform distinct sort to remove duplicates,which makes it less faster than UNION ALL
+--for UNION and UNION ALL the number of coulmns,datatypes,order of columns must be same in both select statements
+--Union combines rows from two or more tables where as join combines columns from two or more tables
+
+
+
