@@ -174,4 +174,24 @@ select COALESCE(FirstName,LastName) as name,Gender,Salary from Employees
 --Union combines rows from two or more tables where as join combines columns from two or more tables
 
 
+alter procedure spGetEmployeeByGender
+@Gender nvarchar(10),
+@Salary int
+as 
+begin
+Select *from Employees where Gender=@Gender and Salary>@Salary
+end
+exec spGetEmployeeByGender 'male',6
 
+create procedure spGetEmployeeCount
+@Gender nvarchar(10),
+@EmployeeCount int output 
+as 
+begin
+Select @EmployeeCount =Count(id) from Employees where Gender=@Gender
+end 
+declare @EmployeeCount int
+EXEC spGetEmployeeCount 'male',@EmployeeCount out
+print @EmployeeCount
+
+sp_help spGetEmployeeCount
